@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Zé para Festas · Calculadora da festa</title>
+<meta name="description" content="Diga quantos convidados e veja quantos salgados Zé Coxinha a sua festa pede. O pedido segue pelo WhatsApp.">
+<!-- Protótipo: tirar a linha abaixo quando a página for a público -->
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#F4A734">
+<link rel="icon" href="assets/img/favicon.png">
+<link rel="apple-touch-icon" href="assets/img/icone-180.png">
+<link rel="preload" href="assets/fonts/Poppins-900-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/Poppins-800-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/Inter-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/site.css">
+<script>document.documentElement.className = 'js';</script>
+</head>
+<body class="carregando">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <radialGradient id="g-salg" cx="36%" cy="40%" r="78%">
+      <stop offset="0" stop-color="#F9C355"/>
+      <stop offset=".55" stop-color="#F4A734"/>
+      <stop offset="1" stop-color="#EE8833"/>
+    </radialGradient>
+    <symbol id="i-zap" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 1.67c2.2 0 4.26.86 5.82 2.42a8.2 8.2 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23-1.48 0-2.93-.39-4.19-1.15l-.3-.17-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.25 8.25-8.25Zm-3.52 4.4c-.16 0-.43.06-.66.31-.22.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.13.17 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.16-.48-.29-.25-.12-1.47-.72-1.69-.8-.23-.08-.39-.12-.56.13-.16.25-.64.8-.78.96-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.16.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.84-.2-.49-.4-.42-.55-.43h-.47Z"/>
+    </symbol>
+    <symbol id="i-ok" viewBox="0 0 24 24">
+      <path fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" d="M5 12.5l4.5 4.5L19 7.5"/>
+    </symbol>
+    <symbol id="i-copia" viewBox="0 0 24 24">
+      <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 9h10v11H9zM5 15V4h10"/>
+    </symbol>
+  </defs>
+</svg>
+
+<a class="pular" href="#calculadora">Ir para a calculadora</a>
+
+<header class="topo">
+  <div class="topo-in">
+    <a class="logo" href="#calculadora" aria-label="Zé Coxinha, início">
+      <img src="assets/img/logo.webp" width="150" height="70" alt="Zé Coxinha">
+    </a>
+    <p class="selo" data-t="marca">Zé para Festas</p>
+  </div>
+</header>
+
+<main>
+
+  <!-- 1. Calculadora -->
+  <section id="calculadora" class="hero" data-parada aria-labelledby="titulo">
+    <div class="hero-in">
+
+      <div class="calc">
+        <p class="olho rev" data-t="marca">Zé para Festas</p>
+        <h1 id="titulo" class="rev" data-t="titulo">Quantos convidados na sua festa?</h1>
+        <p class="apoio rev" data-t="apoio">Arraste e veja quantos salgados a festa pede.</p>
+
+        <div class="conv rev">
+          <button type="button" class="passo" id="menos" aria-label="Menos 5 convidados">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
+          </button>
+          <div class="conv-meio">
+            <output class="conv-num" id="convNum" for="convidados">60</output>
+            <span class="conv-rot" id="convRot">convidados</span>
+          </div>
+          <button type="button" class="passo" id="mais" aria-label="Mais 5 convidados">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5v14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
+          </button>
+        </div>
+
+        <div class="faixa rev">
+          <input type="range" id="convidados" min="10" max="500" step="5" value="60" aria-label="Número de convidados">
+          <div class="faixa-esc" aria-hidden="true"><span id="escMin">10</span><span id="escMax">500</span></div>
+        </div>
+
+        <fieldset class="seg rev">
+          <legend data-t="perguntaComida">A festa vai ter outras comidas?</legend>
+          <div class="seg-in">
+            <label>
+              <input type="radio" name="comida" value="com" checked>
+              <span><b data-t="comOutras">Tem outras comidas</b><small id="segCom">8 por pessoa</small></span>
+            </label>
+            <label>
+              <input type="radio" name="comida" value="so">
+              <span><b data-t="soSalgado">Só salgado</b><small id="segSo">12 por pessoa</small></span>
+            </label>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="res rev">
+        <div class="res-card">
+          <p class="res-rot" data-t="resultado">A festa pede</p>
+          <p class="res-num"><span id="rSalgados">500</span> <span class="res-un">salgados</span></p>
+          <ul class="res-linha">
+            <li><b id="rCentos">5</b> <span id="rCentosUn">centos</span></li>
+            <li><b id="rSacos">2</b> <span id="rSacosUn">sacos de 5 kg</span></li>
+          </ul>
+          <div class="monte" id="monte" aria-hidden="true"></div>
+          <p class="res-nota" id="rNota">Conta: 60 convidados × 8 salgados, com o total no cento seguinte.</p>
+          <p class="res-preco" id="rPreco" hidden></p>
+          <a class="btn btn-zap so-desk" href="#pedido">
+            <svg class="ic" aria-hidden="true"><use href="#i-zap"/></svg><span data-t="botao">Pedir pelo WhatsApp</span>
+          </a>
+        </div>
+        <p class="vh" id="aoVivo" aria-live="polite"></p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 2. Caminho da triagem -->
+  <section id="caminho" class="sec" data-parada aria-labelledby="tCaminho">
+    <div class="sec-in duas">
+      <div class="rev">
+        <h2 id="tCaminho" data-t="tituloCaminho">Que festa é essa?</h2>
+        <p class="sec-apoio" data-t="apoioCaminho">O tipo de festa e o tamanho dizem quem atende você.</p>
+        <fieldset class="tipos">
+          <legend class="vh">Tipo de evento</legend>
+          <div class="tipos-in" id="tipos"></div>
+        </fieldset>
+      </div>
+      <div class="rota rev" id="rota">
+        <p class="rota-rot">Seu pedido vai para</p>
+        <p class="rota-nome" id="rotaNome">Loja da sua cidade</p>
+        <p class="rota-txt" id="rotaTxt">Pelo tamanho da festa, quem fala com você é a loja Zé Coxinha da sua cidade.</p>
+        <ol class="trilha" id="trilha" aria-label="Como o pedido é encaminhado"></ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Pedido -->
+  <section id="pedido" class="sec sec-pedido" data-parada aria-labelledby="tPedido">
+    <div class="sec-in duas">
+      <div class="pedido-txt rev">
+        <h2 id="tPedido" data-t="tituloPedido">Peça pelo WhatsApp</h2>
+        <p class="sec-apoio" data-t="apoioPedido">Conte como é a festa. As opções chegam pelo WhatsApp.</p>
+        <div class="resumo" id="resumo">
+          <p class="resumo-rot">Sua conta</p>
+          <p class="resumo-num" id="resumoNum">500 salgados</p>
+          <p class="resumo-txt" id="resumoTxt">60 convidados · Festa em casa</p>
+          <p class="resumo-rota" id="resumoRota">Loja da sua cidade</p>
+          <a class="resumo-mudar" href="#calculadora">Mudar a conta</a>
+        </div>
+      </div>
+
+      <div class="cartao rev">
+        <form id="form" novalidate>
+          <div class="campo">
+            <label for="nome">Seu nome</label>
+            <input id="nome" name="nome" type="text" autocomplete="name" autocapitalize="words" maxlength="60" aria-describedby="e-nome">
+            <p class="erro" id="e-nome" hidden></p>
+          </div>
+          <div class="campo">
+            <label for="zap">Seu WhatsApp</label>
+            <input id="zap" name="zap" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="(27) 99999-9999" maxlength="16" aria-describedby="e-zap">
+            <p class="erro" id="e-zap" hidden></p>
+          </div>
+          <div class="campo">
+            <label for="local">Cidade e bairro da festa</label>
+            <input id="local" name="local" type="text" autocomplete="off" placeholder="Vitória, Jardim da Penha" maxlength="80" aria-describedby="e-local">
+            <p class="erro" id="e-local" hidden></p>
+          </div>
+          <div class="campo">
+            <label for="data">Data do evento</label>
+            <input id="data" name="data" type="date" aria-describedby="e-data">
+            <p class="erro" id="e-data" hidden></p>
+          </div>
+          <div class="campo campo-aceite">
+            <label class="aceite" for="aceite">
+              <input id="aceite" name="aceite" type="checkbox" aria-describedby="e-aceite">
+              <span class="caixa" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-ok"/></svg></span>
+              <span data-t="aceite">Aceito que o Zé Coxinha use meu contato para responder a este pedido.</span>
+            </label>
+            <p class="erro" id="e-aceite" hidden></p>
+          </div>
+          <button class="btn btn-zap btn-cheio" type="submit" id="enviar">
+            <svg class="ic" aria-hidden="true"><use href="#i-zap"/></svg><span data-t="botaoEnviar">Enviar pelo WhatsApp</span>
+          </button>
+          <p class="form-nota">Você confere a mensagem antes de enviar.</p>
+        </form>
+
+        <div class="pronto" id="pronto" hidden tabindex="-1" aria-labelledby="prontoTit">
+          <img class="pronto-ze" src="assets/img/ze-joia.webp" width="150" height="166" alt="" loading="lazy" decoding="async">
+          <h3 id="prontoTit">Pedido pronto</h3>
+          <p class="pronto-prot"><span>Número do pedido</span><b id="prontoProt">ZF-00000</b></p>
+          <p class="pronto-txt" id="prontoTxt"></p>
+          <div class="pronto-acoes">
+            <a class="btn btn-zap btn-cheio" id="prontoZap" href="#" target="_blank" rel="noopener">
+              <svg class="ic" aria-hidden="true"><use href="#i-zap"/></svg><span>Abrir o WhatsApp de novo</span>
+            </a>
+            <button class="btn btn-linha btn-cheio" type="button" id="copiar">
+              <svg class="ic" aria-hidden="true"><use href="#i-copia"/></svg><span id="copiarTxt">Copiar mensagem</span>
+            </button>
+          </div>
+          <div class="pronto-msg">
+            <p class="pronto-msg-rot">Mensagem</p>
+            <pre id="prontoMsg"></pre>
+          </div>
+          <p class="pronto-aviso" id="prontoAviso" hidden></p>
+          <button class="btn-texto" type="button" id="outra">Fazer outra conta</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Como funciona -->
+  <section id="como" class="sec" data-parada aria-labelledby="tComo">
+    <div class="sec-in duas duas-foto">
+      <figure class="foto rev">
+        <img src="assets/img/caixa-salgadinhos-560.webp"
+             srcset="assets/img/caixa-salgadinhos-560.webp 560w, assets/img/caixa-salgadinhos-960.webp 960w"
+             sizes="(min-width: 960px) 520px, 92vw" width="960" height="720"
+             alt="Caixa aberta de salgadinhos Zé Coxinha" loading="lazy" decoding="async">
+      </figure>
+      <div class="rev">
+        <h2 id="tComo">Como funciona</h2>
+        <ol class="passos" id="passos"></ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Sabores -->
+  <section id="sabores" class="sec sec-sabores" data-parada aria-labelledby="tSabores">
+    <div class="sec-in">
+      <h2 id="tSabores" class="rev">Os sabores</h2>
+      <ul class="sabores" id="listaSabores"></ul>
+    </div>
+  </section>
+
+  <!-- 6. Perguntas -->
+  <section id="perguntas" class="sec" data-parada aria-labelledby="tPerguntas">
+    <div class="sec-in estreita">
+      <h2 id="tPerguntas" class="rev">Perguntas rápidas</h2>
+      <div class="faq rev" id="faq"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="rodape" data-parada>
+  <div class="rodape-in">
+    <img src="assets/img/logo-branco.webp" width="132" height="62" alt="Zé Coxinha" loading="lazy" decoding="async">
+    <p class="rodape-txt"><b data-t="marca">Zé para Festas</b><br>Seu contato é usado só para responder ao pedido.</p>
+    <p class="rodape-demo" id="demo" hidden><span>Protótipo</span> <i id="demoOrigem"></i></p>
+  </div>
+</footer>
+
+<div class="barra" id="barra">
+  <div class="barra-txt">
+    <b id="bSalgados">500 salgados</b>
+    <span id="bSub">60 convidados · 2 sacos de 5 kg</span>
+  </div>
+  <a class="btn btn-zap" href="#pedido">
+    <svg class="ic" aria-hidden="true"><use href="#i-zap"/></svg><span>Pedir</span>
+  </a>
+</div>
+
+<noscript><p class="semjs">Esta página precisa do JavaScript ligado para fazer a conta.</p></noscript>
+
+<script src="js/config.js"></script>
+<script src="js/site.js"></script>
+</body>
+</html>
